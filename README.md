@@ -1,2 +1,2 @@
 # get-tube
-Get's stuff from YouTube
+Gets stuff from YouTube
