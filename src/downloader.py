@@ -6,16 +6,6 @@ import subprocess
 
 
 def gethash(url):
-    """This function returns a 40 character long SHA hash.
-
-    Args:
-        url (string): The URL to be hashed.
-
-    Returns:
-        string: The hash value.
-
-    """
-
     try:
         return hashlib.new(url).hexdigest()
     except Exception:
