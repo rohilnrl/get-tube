@@ -26,4 +26,7 @@ def audio(url, audioquality='0', audioformat='mp3'):
     except subprocess.CalledProcessError:
         print('error: failed to get audio')
 
+    outurl = outurl.decode('utf-8')
+    print(outurl)
+
     return outurl
