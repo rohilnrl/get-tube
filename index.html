@@ -37,28 +37,27 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="six columns" style="margin: auto">
-        <input class="fw" type="text" name="URL" placeholder="YouTube URL"/>
-      </div>
-    </div>
+    <form method="POST">
+      <div class="row">
+        <div class="six columns" style="margin: auto">
+            <input class="fw" type="text" name="URL" placeholder="YouTube URL"/>
+          </div>
+        </div>
 
-    <div class="row">
-      <div class="six columns" style="margin: auto">
-        <form action="/audio" method="POST">
-          <button type="submit" class="button" name="audio" value="mp3" onlcick="appendfor(this.value)">Download Audio</button>
-        </form>
-        <form action="/video" method="POST">
-          <button type="submit" class="button" name="video" value="mp4">Download Video</button>
-        </form>
-      </div>
-    </div>
+        <div class="row">
+          <div class="six columns" style="margin: auto">
+            <button type="submit" class="button" name="audio" value="mp3" onclick="appendfor(this.value)">Download Audio</button>
+            <button type="submit" class="button" name="video" value="mp4">Download Video</button>
+          </div>
+        </div>
+      </form>
 
     <script>
       function appendfor(arg) {
-        var elem = document.querySelector("input[name="URL"]")
+        var elem = document.querySelector("input[name='URL']")
         if (arg == "mp3") {
           document.form.audio.value = elem.value;
+          document.forms[0].action="/dl_audio";
         } else if (arg == "mp4") {
           document.forms[1].value = elem.value;
         }

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return open('web/index.html').read()
+    return open('index.html').read()
 
 @app.route('/audio', methods=['POST'])
 def dl_audio():
