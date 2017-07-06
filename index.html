@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <form method="POST">
+    <form method="POST" onsubmit="if (!validate()) { defaultPrevented(); }">
       <div class="row">
         <div class="six columns" style="margin: auto">
             <input class="fw" type="text" name="URL" placeholder="YouTube URL"/>
@@ -47,19 +47,36 @@
         <div class="row">
           <div class="six columns" style="margin: auto">
             <button type="submit" class="button" name="audio" value="mp3" onclick="appendfor(this.value)">Download Audio</button>
-            <button type="submit" class="button" name="video" value="mp4">Download Video</button>
+            <button type="submit" class="button" name="video" value="mp4" onclick="appendfor(this.value)">Download Video</button>
           </div>
         </div>
       </form>
 
+      <div class="row">
+        <div="six columns" style="margin: auto">
+          <p>Made by <a href="https://github.com/rohilnrl">rohilnrl</a></p>
+        </div>
+      </div>
+
     <script>
+      function validate() {
+        var elem = document.querySelector("input[name='URL']")
+        if (elem == "") {
+          elem.placeholer = "Link may not be empty."
+          return false;
+        } else {
+          return true;
+        }
+      }
+
       function appendfor(arg) {
         var elem = document.querySelector("input[name='URL']")
         if (arg == "mp3") {
           document.forms[0].audio.value = elem.value;
-          document.forms[0].action="/audio";
+          document.forms[0].action = "/audio";
         } else if (arg == "mp4") {
-          document.forms[1].value = elem.value;
+          document.forms[0].video.value = elem.value;
+          document.forms[0].action = "/video";
         }
       }
     </script>

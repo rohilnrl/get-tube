@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-
-
-import hashlib
-import subprocess
+from hashlib import new
+from subprocess import check_output, CalledProcessError
 
 
 def gethash(url):
     try:
-        return hashlib.new(url).hexdigest()
+        return new(url).hexdigest()
     except Exception:
         print('error: failed to generate sha hash')
 
@@ -22,11 +20,22 @@ def audio(url, audioquality='0', audioformat='mp3'):
     getargs.append(url)
 
     try:
-        outurl = subprocess.check_output(getargs)
-    except subprocess.CalledProcessError:
+        outurl = check_output(getargs).decode('utf-8')
+    except CalledProcessError:
         print('error: failed to get audio')
 
-    outurl = outurl.decode('utf-8')
-    print(outurl)
+    return outurl
+
+def video(url, videoformat='mp4'):
+    outurl = '/'
+
+    getargs = ['youtube-dl', '-g', '--format', videoformat]
+
+    getargs.append(url)
+
+    try:
+        outurl = check_output(getargs).decode('utf-8')
+    except CalledProcessError:
+        print('error: failed to get video')
 
     return outurl
